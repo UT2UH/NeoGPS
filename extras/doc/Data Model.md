@@ -65,7 +65,7 @@ gps_fix fix;
     * `fix.geoidHt.whole`, in integer meters
     * `fix.geoidHt.frac`, in integer centimeters to be added to the whole part
   * `fix.satellites`, a satellite count
-  * a date/time structure (see [Time.h](/src/Time.h)), accessed with
+  * a date/time structure (see [NeoTime.h](/src/NeoTime.h)), accessed with
     * `fix.dateTime.year`,
     * `fix.dateTime.month`,
     * `fix.dateTime.date`, the day-of-month,
@@ -108,12 +108,12 @@ There is additional information that is not related to a fix.  Instead, it conta
   * `gps.UTCus()`, the number of microseconds since the last received UTC time, calculated from `micros()` and `gps.UTCsecondStart`.
   * `gps.nmeaMessage`, the latest received message type.  This is an ephemeral value, because multiple sentences are merged into one `fix` structure.  If you only check this after a complete fix is received, you will only see the LAST_SENTENCE_IN_INTERVAL.
     * enum values NMEA_GLL, NMEA_GSA, NMEA_GST, NMEA_GSV, NMEA_RMC, NMEA_VTG or NMEA_ZDA
-  * `gps.satellies[]`, an array of satellite-specific information, where each element contains
-    * `gps.satellies[i].id`, satellite ID
-    * `gps.satellies[i].elevation`, satellite elevation in 0-90 integer degrees
-    * `gps.satellies[i].azimuth`, satellite azimuth in 0-359 integer degrees
-    * `gps.satellies[i].snr`, satellite signal-to-noise ratio in 0-99 integer dBHz
-    * `gps.satellies[i].tracked`, satellite being tracked flag, a boolean
+  * `gps.satellites[]`, an array of satellite-specific information, where each element contains
+    * `gps.satellites[i].id`, satellite ID
+    * `gps.satellites[i].elevation`, satellite elevation in 0-90 integer degrees
+    * `gps.satellites[i].azimuth`, satellite azimuth in 0-359 integer degrees
+    * `gps.satellites[i].snr`, satellite signal-to-noise ratio in 0-99 integer dBHz
+    * `gps.satellites[i].tracked`, satellite being tracked flag, a boolean
   * `gps.sat_count`, the number of elements in the `gps.satellites[]` array
   * `gps.talker_id[]`, talker ID, a two-character array (not NUL-terminated)
   * `gps.mfr_id[]`, manufacturer ID, a three-character array (not NUL-terminated)
@@ -200,10 +200,14 @@ for (uint8_t i=0; i < gps.sat_count; i++) {
   if (gps.satellites[i].tracked) {
     if (gps.satellites[i] . id <= 32)
       GPS_satellites++;
-    if (gps.satellites[i] . id <= 64)
+    else if (gps.satellites[i] . id <= 64)
       SBAS_satellites++;
-    if (gps.satellites[i] . id <= 96)
+    else if (gps.satellites[i] . id <= 96)
       GLONASS_satellites++;
+    else if ((gps.satellites[i] . id >= 193) and (gps.satellites[i] . id <= 200))
+      QZSS_satellites++;
+    else if ((gps.satellites[i] . id >= 201) and (gps.satellites[i] . id <= 235))
+      BAIDU_satellites++;      
   }
 }
 ```
