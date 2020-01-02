@@ -156,8 +156,8 @@
   //      Uncomment *zero* or *one* of the serial port library includes.
   //      If none of these includes are uncommented, Serial will be used.
   //
-  //#include <NeoHWSerial.h>    // NeoSerial or NeoSerial1 Interrupt-style processing
-  #include <AltSoftSerial.h>    // <-- DEFAULT.  Two specific pins required
+  #include <NeoHWSerial.h>    // NeoSerial or NeoSerial1 Interrupt-style processing
+  //#include <AltSoftSerial.h>    // <-- DEFAULT.  Two specific pins required
   //#include <NeoICSerial.h>    // AltSoftSerial with Interrupt-style processing (see docs)
   //#include <NeoSWSerial.h>    // Any pins, only @ 9600, 19200 or 38400 baud
   //#include <SoftwareSerial.h> // NOT RECOMMENDED!
