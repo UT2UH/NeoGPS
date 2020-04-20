@@ -49,26 +49,26 @@ const uint8_t  NEO_DAYS_PER_WEEK      = 7;
 struct time_t {
 
   enum weekday_t {
-    SUNDAY    = 1,
-    MONDAY    = 2,
-    TUESDAY   = 3,
-    WEDNESDAY = 4,
-    THURSDAY  = 5,
-    FRIDAY    = 6,
-    SATURDAY  = 7
+    NEO_SUNDAY    = 1,
+    NEO_MONDAY    = 2,
+    NEO_TUESDAY   = 3,
+    NEO_WEDNESDAY = 4,
+    NEO_THURSDAY  = 5,
+    NEO_FRIDAY    = 6,
+    NEO_SATURDAY  = 7
   };
 
   // NTP epoch year and weekday (Monday)
   static const uint16_t NTP_EPOCH_YEAR      = 1900;
-  static const uint8_t  NTP_EPOCH_WEEKDAY   = MONDAY;
+  static const uint8_t  NTP_EPOCH_WEEKDAY   = NEO_MONDAY;
 
   // POSIX epoch year and weekday (Thursday)
   static const uint16_t POSIX_EPOCH_YEAR    = 1970;
-  static const uint8_t  POSIX_EPOCH_WEEKDAY = THURSDAY;
+  static const uint8_t  POSIX_EPOCH_WEEKDAY = NEO_THURSDAY;
 
   // Y2K epoch year and weekday (Saturday)
   static const uint16_t Y2K_EPOCH_YEAR      = 2000;
-  static const uint8_t  Y2K_EPOCH_WEEKDAY   = SATURDAY;
+  static const uint8_t  Y2K_EPOCH_WEEKDAY   = NEO_SATURDAY;
 
   uint8_t seconds;    //!< 00-59
   uint8_t minutes;    //!< 00-59
